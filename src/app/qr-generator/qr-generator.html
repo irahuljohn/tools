@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>QR Code Generator</h2>
+
+  <input
+    type="url"
+    [(ngModel)]="url"
+    placeholder="Enter URL (https://example.com)"
+  />
+
+  <div class="buttons">
+    <button (click)="generateQR()">Generate QR</button>
+
+    <button
+      class="download"
+      *ngIf="qrCodeUrl"
+      (click)="downloadQR()"
+    >
+      Download PNG
+    </button>
+  </div>
+
+  <div class="qr-container">
+    <ng-container *ngIf="qrCodeUrl; else placeholder">
+      <img [src]="qrCodeUrl" alt="QR Code" />
+    </ng-container>
+
+    <ng-template #placeholder>
+      <p>Your QR Code will appear here</p>
+    </ng-template>
+  </div>
+</div>
